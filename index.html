@@ -1,28 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>是花花~</title>
-</head>
-<style>
-    .box {
-        width: 255.8px;
-        height: 341.2px;
-        position: relative;
-        border: 1px solid black;
-        border-radius: 10px;
-        overflow: hidden;
-    }
-    img{
-        width: 100%;
-        height: 100%;
-        transition: all 1.5s ease;
-    }
-    .box:hover img{
+    <title>个人空间</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            min-height: 100vh;
+            background: #0a0a1a;
+            color: #e0e0e0;
+        }
+
+        /* ==================== 私有1 ==================== */
+        .box#box1 {
+            width: 255.8px;
+            height: 341.2px;
+            position: relative;
+            border: 1px solid black;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        img#img1 {
+            width: 100%;
+            height: 100%;
+            transition: all 1.5s ease;
+        }
+        .box#box1:hover img#img1{
             transform: scale(3.3);
         }
-    .love {
+        .love {
             width: 255.8px;
             height: 170.6px;
             position: absolute;
@@ -30,19 +43,1146 @@
             transform: translateY(-60PX);
             color: #fff;
             transition: all 1s ease;
-            }
-    .box:hover .love {
+        }
+        .box#box1:hover .love {
             transform: translateY(-150px);
         }
-    
+
+        /* ==================== 登录页面 ==================== */
+        #loginPage {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 50%, #0d0d2b 100%);
+            position: relative;
+        }
+
+        #loginPage::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            border-radius: 50%;
+        }
+
+        #loginPage::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+            bottom: -100px;
+            left: -100px;
+            border-radius: 50%;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 50px 45px;
+            width: 420px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .login-header .logo {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .login-header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .login-header p {
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* 记住的用户卡片 */
+        .saved-users {
+            margin-bottom: 25px;
+        }
+
+        .saved-users-title {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .saved-user-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .saved-user-card:hover {
+            background: rgba(129, 140, 248, 0.12);
+            border-color: rgba(129, 140, 248, 0.35);
+            transform: translateX(4px);
+        }
+
+        .saved-user-card .user-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .saved-user-card .user-info {
+            flex: 1;
+        }
+
+        .saved-user-card .user-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #e0e0e0;
+        }
+
+        .saved-user-card .user-hint {
+            font-size: 12px;
+            color: #777;
+            margin-top: 2px;
+        }
+
+        .saved-user-card .user-arrow {
+            color: #555;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .saved-user-card:hover .user-arrow {
+            color: #818cf8;
+        }
+
+        .saved-user-card .btn-forget {
+            background: none;
+            border: none;
+            color: #555;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .saved-user-card .btn-forget:hover {
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* 分割线 */
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: #555;
+            font-size: 13px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .divider span {
+            padding: 0 15px;
+        }
+
+        /* 输入框 */
+        .input-group {
+            margin-bottom: 22px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #aaa;
+            font-weight: 500;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: #818cf8;
+            box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .input-group input::placeholder {
+            color: #555;
+        }
+
+        /* 记住我 */
+        .remember-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #6366f1;
+            cursor: pointer;
+        }
+
+        .remember-me span {
+            font-size: 14px;
+            color: #999;
+        }
+
+        /* 按钮 */
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
+        .btn-login:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-guest {
+            width: 100%;
+            padding: 13px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: #aaa;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-guest:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: #ddd;
+        }
+
+        /* 错误提示 */
+        .error-msg {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            display: none;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-8px); }
+            40% { transform: translateX(8px); }
+            60% { transform: translateX(-5px); }
+            80% { transform: translateX(5px); }
+        }
+
+        /* ==================== 主页面 ==================== */
+        #mainPage {
+            display: none;
+            min-height: 100vh;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 65px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar .nav-logo {
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .navbar .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 14px;
+        }
+
+        .user-badge .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .avatar-admin {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        }
+
+        .avatar-guest {
+            background: linear-gradient(135deg, #6b7280, #9ca3af);
+        }
+
+        .role-tag {
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .role-admin {
+            background: rgba(99, 102, 241, 0.25);
+            color: #a5b4fc;
+        }
+
+        .role-guest {
+            background: rgba(107, 114, 128, 0.25);
+            color: #9ca3af;
+        }
+
+        .btn-logout {
+            padding: 8px 20px;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 10px;
+            color: #fca5a5;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-logout:hover {
+            background: rgba(239, 68, 68, 0.3);
+        }
+
+        /* 主内容区 */
+        .main-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px 25px 60px;
+        }
+
+        /* 欢迎横幅 */
+        .welcome-banner {
+            text-align: center;
+            padding: 35px 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 35px;
+        }
+
+        .welcome-banner h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .welcome-banner p {
+            color: #888;
+            font-size: 15px;
+        }
+
+        /* 访客提示 */
+        .guest-banner {
+            background: rgba(251, 191, 36, 0.08);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            color: #fcd34d;
+            padding: 14px 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* 区域标题 */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            margin-top: 40px;
+        }
+
+        .section-header:first-of-type {
+            margin-top: 0;
+        }
+
+        .section-header .section-icon {
+            font-size: 24px;
+        }
+
+        .section-header h3 {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .section-header .section-line {
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .section-header .section-badge {
+            font-size: 12px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .badge-public {
+            background: rgba(74, 222, 128, 0.15);
+            color: #4ade80;
+        }
+
+        .badge-private {
+            background: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
+        }
+
+        /* 私有区域整体隐藏/显示 */
+        .private-section {
+            display: none;
+        }
+
+        .private-section.visible {
+            display: block;
+        }
+
+        /* 内容插槽容器 */
+        .content-slot {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            min-height: 120px;
+            position: relative;
+        }
+
+        .content-slot-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ccc;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* 空插槽提示 */
+        .slot-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            color: #444;
+            text-align: center;
+        }
+
+        .slot-empty .empty-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+            opacity: 0.5;
+        }
+
+        .slot-empty p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .slot-empty code {
+            background: rgba(255, 255, 255, 0.06);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #818cf8;
+        }
+
+        /* iframe 容器 */
+        .slot-iframe-wrapper {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .slot-iframe-wrapper iframe {
+            width: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            .login-container {
+                width: 92%;
+                padding: 35px 25px;
+            }
+
+            .navbar {
+                padding: 0 15px;
+            }
+
+            .main-content {
+                padding: 20px 15px 40px;
+            }
+
+            .user-badge {
+                padding: 6px 12px;
+                font-size: 13px;
+            }
+        }
     </style>
+</head>
 <body>
-    <div class="box">
-        <img src="花.jpg" alt="花">
-        <div class="love">
-            <h2 style="color: aqua;">Mine</h2>
-            <p style=" color: hotpink;">❤️ Best Friend ❤️</p>
+
+<!-- ============================================================
+     登录页面
+     ============================================================ -->
+<div id="loginPage">
+    <div class="login-container">
+        <div class="login-header">
+            <div class="logo">✦</div>
+            <h1>个人空间</h1>
+            <p>登录以访问完整内容</p>
         </div>
+
+        <!-- 已保存的用户（自动填充） -->
+        <div class="saved-users" id="savedUsersSection" style="display:none;">
+            <div class="saved-users-title">选择已保存的账户快速登录</div>
+            <div id="savedUsersList"></div>
+        </div>
+
+        <div class="divider" id="savedUsersDivider" style="display:none;">
+            <span>或手动登录</span>
+        </div>
+
+        <div class="error-msg" id="errorMsg"></div>
+
+        <form id="loginForm" onsubmit="return handleLogin(event)">
+            <div class="input-group">
+                <label for="username">用户名</label>
+                <input
+                        type="text"
+                        id="username"
+                        placeholder="请输入用户名"
+                        autocomplete="username"
+                >
+            </div>
+
+            <div class="input-group">
+                <label for="password">密码</label>
+                <input
+                        type="password"
+                        id="password"
+                        placeholder="请输入密码"
+                        autocomplete="current-password"
+                >
+            </div>
+
+            <div class="remember-row">
+                <label class="remember-me">
+                    <input type="checkbox" id="rememberMe" checked>
+                    <span>记住我，下次自动填充</span>
+                </label>
+            </div>
+
+            <button type="submit" class="btn-login" id="btnLogin">登 录</button>
+        </form>
+
+        <div class="divider">
+            <span>或</span>
+        </div>
+
+        <button class="btn-guest" onclick="handleGuestLogin()">
+            🚶 以访客身份浏览
+        </button>
     </div>
+</div>
+
+<!-- ============================================================
+     主页面
+     ============================================================ -->
+<div id="mainPage">
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-logo">✦ 个人空间</div>
+        <div class="nav-right">
+            <div class="user-badge">
+                <div class="avatar" id="userAvatar">👤</div>
+                <span id="displayName">用户</span>
+                <span class="role-tag" id="roleTag">角色</span>
+            </div>
+            <button class="btn-logout" onclick="handleLogout()">退出</button>
+        </div>
+    </nav>
+
+    <!-- 主内容 -->
+    <div class="main-content">
+
+        <!-- 访客提示横幅 -->
+        <div class="guest-banner" id="guestBanner">
+            ⚠️ 您当前以访客身份浏览，仅显示公共内容。登录后可查看全部内容。
+        </div>
+
+        <!-- 欢迎横幅 -->
+        <div class="welcome-banner">
+            <h2 id="welcomeTitle">欢迎</h2>
+            <p id="welcomeDesc">这里是个人空间</p>
+        </div>
+
+        <!-- ================================================
+             公共内容区域（所有人可见）
+             ================================================ -->
+        <div class="section-header">
+            <span class="section-icon">📂</span>
+            <h3>公共内容</h3>
+            <span class="section-line"></span>
+            <span class="section-badge badge-public">所有人可见</span>
+        </div>
+
+        <!--
+        ╔═══════════════════════════════════════════════════╗
+        ║  公共插槽 1                                        ║
+        ║  将你的内容放入下方 <div class="content-slot"> 中   ║
+        ║  支持：HTML 代码 / iframe 嵌入 / 任何网页元素       ║
+        ╚═══════════════════════════════════════════════════╝
+        -->
+        <div class="content-slot" id="publicSlot1">
+            <div class="content-slot-title">🎮 公共内容 1</div>
+            <!-- ▼▼▼ 在这里插入你的内容 ▼▼▼ -->
+            <div class="slot-empty">
+                <div class="empty-icon">📦</div>
+                <p>将内容代码粘贴到 <code>id="publicSlot1"</code> 的这个 div 中</p>
+                <p>替换掉这个提示框即可</p>
+            </div>
+            <!-- ▲▲▲ 在这里插入你的内容 ▲▲▲ -->
+        </div>
+
+        <!-- 公共插槽 2 -->
+        <div class="content-slot" id="publicSlot2">
+            <div class="content-slot-title">🎨 公共内容 2</div>
+            <!-- ▼▼▼ 在这里插入你的内容 ▼▼▼ -->
+            <div class="slot-empty">
+                <div class="empty-icon">📦</div>
+                <p>将内容代码粘贴到 <code>id="publicSlot2"</code> 的这个 div 中</p>
+            </div>
+            <!-- ▲▲▲ 在这里插入你的内容 ▲▲▲ -->
+        </div>
+
+        <!-- 公共插槽 3 -->
+        <div class="content-slot" id="publicSlot3">
+            <div class="content-slot-title">📄 公共内容 3</div>
+            <!-- ▼▼▼ 在这里插入你的内容 ▼▼▼ -->
+            <div class="slot-empty">
+                <div class="empty-icon">📦</div>
+                <p>将内容代码粘贴到 <code>id="publicSlot3"</code> 的这个 div 中</p>
+            </div>
+            <!-- ▲▲▲ 在这里插入你的内容 ▲▲▲ -->
+        </div>
+
+        <!-- ================================================
+             私有内容区域（仅登录用户可见，访客完全隐藏）
+             ================================================ -->
+        <div class="private-section" id="privateSection">
+
+            <div class="section-header">
+                <span class="section-icon">🔒</span>
+                <h3>私有内容</h3>
+                <span class="section-line"></span>
+                <span class="section-badge badge-private">仅登录用户</span>
+            </div>
+
+            <!--
+            ╔═══════════════════════════════════════════════════╗
+            ║  私有插槽 1                                        ║
+            ║  只有登录用户才能看到                               ║
+            ║  访客访问时此区域完全隐藏                            ║
+            ╚═══════════════════════════════════════════════════╝
+            -->
+            <div class="content-slot" id="privateSlot1">
+                <div class="content-slot-title">🎮 私有内容 1</div>
+                <!-- ▼▼▼ 在这里插入你的内容 ▼▼▼ -->
+                <div class="box" id = "box1">
+                    <img src="花.jpg" alt="花" id = "img1">
+                    <div class="love">
+                        <h2 style="color: aqua;">Mine</h2>
+                        <p style=" color: hotpink;">❤️ Best Friend ❤️</p>
+                    </div>
+                </div>
+                <!-- ▲▲▲ 在这里插入你的内容 ▲▲▲ -->
+            </div>
+
+            <!-- 私有插槽 2 -->
+            <div class="content-slot" id="privateSlot2">
+                <div class="content-slot-title">🔐 私有内容 2</div>
+                <!-- ▼▼▼ 在这里插入你的内容 ▼▼▼ -->
+                <div class="slot-empty">
+                    <div class="empty-icon">📦</div>
+                    <p>将内容代码粘贴到 <code>id="privateSlot2"</code> 的这个 div 中</p>
+                </div>
+                <!-- ▲▲▲ 在这里插入你的内容 ▲▲▲ -->
+            </div>
+
+            <!-- 私有插槽 3 -->
+            <div class="content-slot" id="privateSlot3">
+                <div class="content-slot-title">💎 私有内容 3</div>
+                <!-- ▼▼▼ 在这里插入你的内容 ▼▼▼ -->
+                <div class="slot-empty">
+                    <div class="empty-icon">📦</div>
+                    <p>将内容代码粘贴到 <code>id="privateSlot3"</code> 的这个 div 中</p>
+                </div>
+                <!-- ▲▲▲ 在这里插入你的内容 ▲▲▲ -->
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // ================================================================
+    //  SHA-256 哈希模块
+    // ================================================================
+
+    async function sha256(message) {
+        const msgBuffer = new TextEncoder().encode(message);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function saltedHash(password, salt) {
+        let result = salt.prefix + password + salt.suffix;
+        for (let i = 0; i < 1000; i++) {
+            result = await sha256(result + salt.pepper + i);
+        }
+        return result;
+    }
+
+    // ================================================================
+    //  用户凭证（哈希存储）
+    // ================================================================
+
+    const SALT = {
+        prefix: 'x7$kM9#vQ2!',
+        suffix: '@pL5&wR8*nZ3',
+        pepper: 'jF4%dG6^hT1'
+    };
+
+    const CREDENTIAL_STORE = {};
+    const USER_DISPLAY_NAMES = {};
+
+    async function initializeCredentials() {
+        const users = [
+            { name: 'Evelyn',   pass: '182376233', display: 'Evelyn' },
+            { name: 'Milkyink', pass: '182376233', display: 'Milkyink' }
+        ];
+
+        for (const user of users) {
+            const uHash = await sha256(SALT.prefix + user.name + SALT.suffix);
+            CREDENTIAL_STORE[uHash] = await saltedHash(user.pass, SALT);
+            USER_DISPLAY_NAMES[uHash] = user.display;
+        }
+    }
+
+    // ================================================================
+    //  记住用户功能
+    // ================================================================
+
+    const REMEMBER_KEY = 'saved_accounts';
+    const SESSION_KEY = 'auth_session';
+    const PWD_KEY = 'saved_passwords';
+
+    function getSavedAccounts() {
+        try {
+            const data = localStorage.getItem(REMEMBER_KEY);
+            return data ? JSON.parse(data) : [];
+        } catch (e) {
+            return [];
+        }
+    }
+
+    function saveAccount(username, displayName) {
+        const accounts = getSavedAccounts();
+        const existingIndex = accounts.findIndex(a => a.username === username);
+        if (existingIndex !== -1) {
+            accounts[existingIndex].lastLogin = Date.now();
+        } else {
+            accounts.push({
+                username: username,
+                displayName: displayName,
+                lastLogin: Date.now()
+            });
+        }
+        localStorage.setItem(REMEMBER_KEY, JSON.stringify(accounts));
+    }
+
+    function removeAccount(username) {
+        let accounts = getSavedAccounts();
+        accounts = accounts.filter(a => a.username !== username);
+        localStorage.setItem(REMEMBER_KEY, JSON.stringify(accounts));
+        renderSavedUsers();
+    }
+
+    function renderSavedUsers() {
+        const accounts = getSavedAccounts();
+        const section = document.getElementById('savedUsersSection');
+        const divider = document.getElementById('savedUsersDivider');
+        const list = document.getElementById('savedUsersList');
+
+        if (accounts.length === 0) {
+            section.style.display = 'none';
+            divider.style.display = 'none';
+            return;
+        }
+
+        section.style.display = 'block';
+        divider.style.display = 'flex';
+
+        accounts.sort((a, b) => b.lastLogin - a.lastLogin);
+
+        list.innerHTML = accounts.map(account => `
+        <div class="saved-user-card" onclick="quickLogin('${account.username}')">
+            <div class="user-avatar">👑</div>
+            <div class="user-info">
+                <div class="user-name">${account.displayName}</div>
+                <div class="user-hint">点击自动填充并登录</div>
+            </div>
+            <button class="btn-forget" onclick="event.stopPropagation(); forgetAccount('${account.username}')" title="删除此账户">
+                ✕
+            </button>
+            <span class="user-arrow">›</span>
+        </div>
+    `).join('');
+    }
+
+    async function quickLogin(username) {
+        document.getElementById('username').value = username;
+
+        const savedPwd = getSavedPassword(username);
+        if (savedPwd) {
+            document.getElementById('password').value = savedPwd;
+            document.getElementById('btnLogin').click();
+        } else {
+            document.getElementById('password').value = '';
+            document.getElementById('password').focus();
+        }
+    }
+
+    function forgetAccount(username) {
+        if (confirm(`确定要删除已保存的账户 "${username}" 吗？`)) {
+            removeAccount(username);
+            removeSavedPassword(username);
+        }
+    }
+
+    // ================================================================
+    //  密码本地存储
+    // ================================================================
+
+    function getSavedPasswords() {
+        try {
+            const data = localStorage.getItem(PWD_KEY);
+            return data ? JSON.parse(data) : {};
+        } catch (e) {
+            return {};
+        }
+    }
+
+    function savePassword(username, password) {
+        const pwds = getSavedPasswords();
+        pwds[username] = btoa(encodeURIComponent(password));
+        localStorage.setItem(PWD_KEY, JSON.stringify(pwds));
+    }
+
+    function getSavedPassword(username) {
+        const pwds = getSavedPasswords();
+        const encoded = pwds[username];
+        if (!encoded) return null;
+        try {
+            return decodeURIComponent(atob(encoded));
+        } catch (e) {
+            return null;
+        }
+    }
+
+    function removeSavedPassword(username) {
+        const pwds = getSavedPasswords();
+        delete pwds[username];
+        localStorage.setItem(PWD_KEY, JSON.stringify(pwds));
+    }
+
+    // ================================================================
+    //  登录处理
+    // ================================================================
+
+    async function handleLogin(event) {
+        event.preventDefault();
+
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value;
+        const rememberMe = document.getElementById('rememberMe').checked;
+        const btnLogin = document.getElementById('btnLogin');
+
+        if (!username || !password) {
+            showError('⚠️ 请输入用户名和密码');
+            return false;
+        }
+
+        btnLogin.disabled = true;
+        btnLogin.textContent = '验证中...';
+
+        try {
+            const inputUserHash = await sha256(SALT.prefix + username + SALT.suffix);
+            const inputPassHash = await saltedHash(password, SALT);
+            const storedPassHash = CREDENTIAL_STORE[inputUserHash];
+
+            if (storedPassHash && storedPassHash === inputPassHash) {
+                const displayName = USER_DISPLAY_NAMES[inputUserHash];
+
+                if (rememberMe) {
+                    saveAccount(username, displayName);
+                    savePassword(username, password);
+                }
+
+                const session = {
+                    displayName: displayName,
+                    role: 'admin',
+                    loginTime: new Date().toLocaleString('zh-CN'),
+                    isGuest: false
+                };
+
+                sessionStorage.setItem(SESSION_KEY, JSON.stringify(session));
+                document.getElementById('errorMsg').style.display = 'none';
+                showMainPage(session);
+            } else {
+                showError('❌ 用户名或密码错误，请重试');
+                document.getElementById('password').value = '';
+            }
+        } catch (e) {
+            showError('❌ 系统错误，请刷新页面重试');
+            console.error('登录验证出错:', e);
+        } finally {
+            btnLogin.disabled = false;
+            btnLogin.textContent = '登 录';
+        }
+
+        return false;
+    }
+
+    function handleGuestLogin() {
+        const session = {
+            displayName: '访客',
+            role: 'guest',
+            loginTime: new Date().toLocaleString('zh-CN'),
+            isGuest: true
+        };
+
+        sessionStorage.setItem(SESSION_KEY, JSON.stringify(session));
+        showMainPage(session);
+    }
+
+    function handleLogout() {
+        sessionStorage.removeItem(SESSION_KEY);
+
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+        document.getElementById('errorMsg').style.display = 'none';
+
+        document.getElementById('mainPage').style.display = 'none';
+        document.getElementById('loginPage').style.display = 'flex';
+
+        renderSavedUsers();
+    }
+
+    // ================================================================
+    //  页面渲染
+    // ================================================================
+
+    function showMainPage(session) {
+        document.getElementById('loginPage').style.display = 'none';
+        document.getElementById('mainPage').style.display = 'block';
+
+        document.getElementById('displayName').textContent = session.displayName;
+
+        const avatar = document.getElementById('userAvatar');
+        const roleTag = document.getElementById('roleTag');
+
+        if (session.isGuest) {
+            avatar.className = 'avatar avatar-guest';
+            avatar.textContent = '🚶';
+            roleTag.className = 'role-tag role-guest';
+            roleTag.textContent = '访客';
+
+            document.getElementById('welcomeTitle').textContent = '欢迎，访客';
+            document.getElementById('welcomeDesc').textContent = '您正在以访客模式浏览';
+            document.getElementById('guestBanner').style.display = 'flex';
+
+            // 完全隐藏私有内容
+            hidePrivateContent();
+        } else {
+            avatar.className = 'avatar avatar-admin';
+            avatar.textContent = '👑';
+            roleTag.className = 'role-tag role-admin';
+            roleTag.textContent = '管理员';
+
+            document.getElementById('welcomeTitle').textContent = `欢迎回来，${session.displayName}`;
+            document.getElementById('welcomeDesc').textContent = `登录时间：${session.loginTime}`;
+            document.getElementById('guestBanner').style.display = 'none';
+
+            // 显示私有内容
+            showPrivateContent();
+        }
+    }
+
+    /**
+     * 访客模式：完全隐藏私有区域
+     */
+    function hidePrivateContent() {
+        document.getElementById('privateSection').classList.remove('visible');
+    }
+
+    /**
+     * 管理员模式：显示私有区域
+     */
+    function showPrivateContent() {
+        document.getElementById('privateSection').classList.add('visible');
+    }
+
+    // ================================================================
+    //  工具函数
+    // ================================================================
+
+    function showError(msg) {
+        const errorMsg = document.getElementById('errorMsg');
+        errorMsg.textContent = msg;
+        errorMsg.style.display = 'block';
+        errorMsg.style.animation = 'none';
+        errorMsg.offsetHeight;
+        errorMsg.style.animation = 'shake 0.5s ease';
+    }
+
+    // ================================================================
+    //  初始化
+    // ================================================================
+    (async function init() {
+        await initializeCredentials();
+        renderSavedUsers();
+
+        const saved = sessionStorage.getItem(SESSION_KEY);
+        if (saved) {
+            try {
+                const session = JSON.parse(saved);
+                showMainPage(session);
+            } catch (e) {
+                sessionStorage.removeItem(SESSION_KEY);
+            }
+        }
+    })();
+</script>
+
 </body>
 </html>
